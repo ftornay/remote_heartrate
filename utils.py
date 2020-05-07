@@ -64,7 +64,7 @@ def convert_vid(path, dir, ext='mov'):
     fn += '.' + ext
     src = os.path.join(dir, path)
     out = os.path.join(dir, fn)
-    cp = subprocess.run(['ffmpeg', '-i', src, out])
+    cp = subprocess.run(['ffmpeg', '-y', '-i', src, out])
     if cp.returncode == 0:
         # Conversion successful!
         return fn
