@@ -60,7 +60,7 @@ def find_heart_rate(fft, freqs, freq_min, freq_max):
     return freqs[max_peak] * 60
 
 def convert_vid(path, dir, ext='mov'):
-    fn, _ = os.path.splitext(src)
+    fn, _ = os.path.splitext(path)
     fn += '.' + ext
     src = os.path.join(dir, path)
     out = os.path.join(dir, fn)
