@@ -60,10 +60,11 @@ def find_heart_rate(fft, freqs, freq_min, freq_max):
     return freqs[max_peak] * 60
 
 def convert_vid(path, dir, ext='mov'):
-    src = os.path.join(dir, path)
     fn, _ = os.path.splitext(src)
     fn += '.' + ext
-    cp = subprocess.run(['ffmpeg', '-i', src, fn])
+    src = os.path.join(dir, path)
+    out = os.path.join(dir, fn)
+    cp = subprocess.run(['ffmpeg', '-i', src, out])
     if cp.returncode == 0:
         # Conversion successful!
         return fn
