@@ -10,6 +10,7 @@ ALLOWED_EXTENSIONS = set(['mov', 'mp4', 'avi'])
 app = Flask(__name__)
 run_with_ngrok(app)   
 app.config['UPLOAD_FOLDER'] = 'upload/'
+app.secret_key = os.environ.get('SECRET_KEY', 'dev')
 
 def allowed_file(filename):
     return '.' in filename and \
