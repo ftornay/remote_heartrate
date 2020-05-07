@@ -5,7 +5,8 @@ import preprocessing
 import eulerian
 import os, subprocess
 
-def get_heartrate(filename):
+def get_heartrate(filename, dir):
+    """ Read video file and estimate heart rate """
     # Frequency range for Fast-Fourier Transform
     freq_min = 1
     freq_max = 1.8
@@ -13,7 +14,8 @@ def get_heartrate(filename):
     # Preprocessing phase
     hr = -1 # Valor por defecto
 
-    video_frames, frame_ct, fps = preprocessing.read_video(filename)
+    fn = os.path.join(dir, filename)
+    video_frames, frame_ct, fps = preprocessing.read_video(fn)
 
     # Build Laplacian video pyramid
 
@@ -36,8 +38,8 @@ def get_heartrate(filename):
 
     return hr, filename
 
-# Calculate heart rate from FFT peaks
 def find_heart_rate(fft, freqs, freq_min, freq_max):
+    """ Calculate heart rate from FFT peaks """
     fft_maximums = []
 
     for i in range(fft.shape[0]):
@@ -60,6 +62,9 @@ def find_heart_rate(fft, freqs, freq_min, freq_max):
     return freqs[max_peak] * 60
 
 def convert_vid(path, dir, ext='mov'):
+    """ Converts video to format
+    corrresponding to parameter ext
+    using ffmpeg """
     fn, _ = os.path.splitext(path)
     fn += '.' + ext
     src = os.path.join(dir, path)

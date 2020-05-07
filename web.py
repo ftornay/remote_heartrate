@@ -47,9 +47,7 @@ def upload_file():
 
 @app.route('/heartrate/<filename>')
 def show_heartrate(filename):
-    hr, video = get_heartrate(os.path.join(app.config['UPLOAD_FOLDER'],
-                               filename))
-
+    hr, video = get_heartrate(filename, app.config['UPLOAD_FOLDER'])
     return render_template('results.html', heartrate=str(hr), video=video)
 
 if __name__ == "__main__":
