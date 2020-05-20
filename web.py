@@ -5,7 +5,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from flask_ngrok import run_with_ngrok
 from utils import get_heartrate, convert_vid
 
-ALLOWED_EXTENSIONS = set(['mov'])   #, 'mp4', 'avi'])
+ALLOWED_EXTENSIONS = set(['mp4'])   #, 'mov', 'avi'])
 
 app = Flask(__name__)
 run_with_ngrok(app)   
