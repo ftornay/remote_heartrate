@@ -36,6 +36,7 @@ def get_heartrate(filename, dir):
 
         hr = find_heart_rate(fft, frequencies, freq_min, freq_max)
 
+    filename, _ = os.path.splitext(filename)
     return hr, filename
 
 def find_heart_rate(fft, freqs, freq_min, freq_max):
