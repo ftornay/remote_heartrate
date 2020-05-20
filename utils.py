@@ -65,7 +65,10 @@ def convert_vid(path, dir, ext='mov'):
     """ Converts video to format
     corrresponding to parameter ext
     using ffmpeg """
-    fn, _ = os.path.splitext(path)
+    fn, old_ext = os.path.splitext(path)
+    # Don't convert if same format
+    if old_ext == ext:
+        return path
     fn += '.' + ext
     src = os.path.join(dir, path)
     out = os.path.join(dir, fn)
